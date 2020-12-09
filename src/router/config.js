@@ -66,14 +66,14 @@ export const protectedRoute = [
         meta: {
           title: 'dashboard',
           group: 'apps',
-          icon: 'mdi-view-dashboard'
+          icon: 'mdi-emoticon-kiss-outline'
         },
         component: () => import('@/views/Dashboard.vue')
       },
       {
         path: '/calendar',
         meta: {
-          title: 'calendar',
+          title: 'term',
           group: 'apps',
           icon: 'mdi-calendar-check',
           new: true
@@ -86,95 +86,74 @@ export const protectedRoute = [
       },
 
       {
-        path: '/acl',
+        path: '/family',
         component: RouteWrapper,
-        redirect: '/acl/user/list',
+        redirect: '/family',
         meta: {
-          title: 'acl',
-          icon: 'mdi-shield',
+          title: 'family',
+          icon: 'mdi-human-male-child',
           group: 'cms'
         },
         children: [
           {
-            path: '/acl/user',
-            name: 'acl.user',
+            path: '/family/member',
+            name: 'FamilyMember',
             meta: {
-              title: 'users',
-              icon: 'mdi-account-multiple'
+              title: 'familyMember',
+              icon: 'mdi-grave-stone'
             },
-            redirect: '/acl/user/list',
-            component: RouteWrapper,
-            children: [
-              {
-                path: '/acl/user/list',
-                name: 'acl.user.list',
-                meta: {
-                  title: 'user_list',
-                  icon: 'mdi-account-multiple'
-                },
-                component: () => import('@/views/user/UserList.vue')
-              },
-              {
-                path: '/acl/user/create',
-                name: 'acl.user.create',
-                meta: {
-                  title: 'create_user',
-                  icon: 'mdi-view-grid'
-                },
-                component: () => import('@/views/user/UserItem.vue')
-              },
-              {
-                path: '/acl/user/item/:id',
-                name: 'acl.user.edit',
-                meta: {
-                  title: 'edit_user',
-                  icon: 'mdi-view-grid'
-                },
-                props: true,
-                component: () => import('@/views/user/UserItem.vue')
-              }
-            ]
+            component: () => import('@/views/list/FamilyUser.vue'),
           }
         ]
       },
       //widgets
       {
-        path: '/widgets',
+        path: '/ending-note',
         component: RouteWrapper,
         meta: {
-          title: 'widget',
-          icon: 'mdi-widgets',
+          title: 'endingNote',
+          icon: 'mdi-bed',
           group: 'advance'
         },
-        redirect: '/widgets/list',
+        redirect: '/ending-note/about-me',
         children: [
           {
-            path: '/widgets/list',
-            name: 'ListWidget',
+            path: '/ending-note/about-me',
+            name: 'AboutMe',
             meta: {
-              title: 'list',
+              title: 'aboutMe',
               icon: 'mdi-table'
             },
             component: () => import('@/views/widgets/List.vue')
           },
           {
-            path: '/widgets/social',
-            name: 'SocialWidget',
+            path: '/ending-note/property',
+            name: 'Property',
             meta: {
-              title: 'social',
+              title: 'property',
               icon: 'mdi-face-profile'
             },
             component: () => import('@/views/widgets/Social.vue')
           },
           {
-            path: '/widgets/statistic',
-            name: 'StatisticWidget',
+            path: '/ending-note/insurance',
+            name: 'Insurance',
             meta: {
-              title: 'statistic',
+              title: 'insurance',
               icon: 'mdi-hexagon'
             },
             component: () => import('@/views/widgets/Statistic.vue')
-          }
+          },
+          {
+            path: '/ending-note/last-message',
+            name: 'LastMessage',
+            meta: {
+              title: 'lastMessage',
+              icon: 'mdi-hexagon'
+            },
+            component: () => import('@/views/widgets/Statistic.vue')
+          },
+          
         ]
       },
       //form
@@ -182,8 +161,8 @@ export const protectedRoute = [
         path: '/forms',
         component: RouteWrapper,
         meta: {
-          title: 'form',
-          icon: 'mdi-form-textbox',
+          title: 'invitingList',
+          icon: 'mdi-human-greeting-proximity',
           group: 'advance'
         },
         redirect: '/forms/list',
@@ -207,6 +186,27 @@ export const protectedRoute = [
             component: () => import('@/views/form/Steppers.vue')
           }
         ]
+      },
+      
+      {
+        path: '/password-request',
+        name: 'PasswordRequest',
+        meta: {
+          title: 'passwordRequest',
+          icon: 'mdi-key-arrow-right',
+          hiddenInMenu: false
+        },
+        component: () => import('@/views/list/PasswordRequestList.vue')
+      },
+      {
+        path: '/report-of-user',
+        name: 'ReportOfUser',
+        meta: {
+          title: 'reportOfUser',
+          icon: 'mdi-account-voice',
+          hiddenInMenu: false
+        },
+        component: () => import('@/views/list/CRUDTable.vue')
       },
       //chart
       {
@@ -238,92 +238,6 @@ export const protectedRoute = [
             component: () => import('@/views/chart/G2.vue')
           }
         ]
-      },
-      //email
-      {
-        path: '/mail',
-        component: () => import('@/views/mail/Index.vue'),
-        meta: {
-          title: 'mail',
-          icon: 'mdi-email',
-          group: 'email'
-        },
-        redirect: '/mail/inbox',
-        children: [
-          {
-            path: '/mail/:category',
-            name: 'mail.category',
-            props: true,
-            meta: {
-              title: 'inbox',
-              icon: 'mdi-view-list',
-              hiddenInMenu: true
-            },
-            component: () => import('@/views/mail/Inbox.vue')
-          },
-          {
-            path: '/mail/inbox',
-            name: 'mail.inbox',
-            meta: {
-              title: 'inbox',
-              icon: 'mdi-view-list'
-            },
-            component: () => import('@/views/mail/Inbox.vue')
-          },
-          {
-            path: '/mail/inbox/:uuid',
-            name: 'inbox',
-            props: true,
-            meta: {
-              title: 'mail',
-              icon: 'mdi-view-list',
-              hiddenInMenu: true
-            },
-            component: () => import('@/views/mail/Read.vue')
-          }
-        ]
-      },
-      {
-        path: '/media',
-        meta: {
-          title: 'media',
-          icon: 'mdi-image'
-        },
-        name: 'media',
-        component: () => import('@/views/media/Index.vue'),
-        redirect: '/media/all',
-        children: [
-          {
-            path: '/media/file',
-            name: 'media.file',
-            props: true,
-            meta: {
-              title: 'dir',
-              icon: 'mdi-view-list',
-              hiddenInMenu: true
-            },
-            component: () => import('@/views/media/List.vue')
-          },
-          {
-            path: '/media/all',
-            name: 'media.all',
-            meta: {
-              title: 'all',
-              icon: 'mdi-view-list'
-            },
-            component: () => import('@/views/media/List.vue')
-          }
-        ]
-      },
-      {
-        path: '/changelog',
-        name: 'changelog',
-        meta: {
-          title: 'changelog',
-          icon: 'mdi-timeline-text',
-          hiddenInMenu: false
-        },
-        component: () => import('@/views/Changelog.vue')
       },
       {
         path: '/403',

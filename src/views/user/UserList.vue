@@ -155,7 +155,32 @@ export default {
           value: 'action'
         }
       ],
-      items: [],
+      items: [
+        {
+          avatar: 'none',
+          username: 'Srodayes',
+          email: 'cn.ben1059@gmail.com',
+          phone: '012345678',
+          gender: 'male',
+          action: 'none'
+        },
+        {
+          avatar: 'none',
+          username: 'Srodayes',
+          email: 'cn.ben1059@gmail.com',
+          phone: '012345678',
+          gender: 'male',
+          action: 'none'
+        },
+        {
+          avatar: 'none',
+          username: 'Srodayes',
+          email: 'cn.ben1059@gmail.com',
+          phone: '012345678',
+          gender: 'male',
+          action: 'none'
+        }
+      ],
       actions: [
         {
           text: 'View Item',
@@ -186,30 +211,30 @@ export default {
   },
   methods: {
     //
-    updateFilterQuery(query) {
-      const filter = Object.assign(this.filter, query)
-      filter.page = parseInt(filter.page)
-      return filter
-    },
-    resetFilter() {
-      this.filter = {
-        page: 1,
-        'filter[username]': null
-      }
-    },
-    fetchRecords(query) {
-      this.loadingItems = true
-      this.items = []
-      return fetchUsers(query)
-        .then(({ data, meta }) => {
-          this.items = data
-          this.serverItemsLength = meta.total
-          this.loadingItems = false
-        })
-        .catch(() => {
-          this.loadingItems = false
-        })
-    },
+    // updateFilterQuery(query) {
+    //   const filter = Object.assign(this.filter, query)
+    //   filter.page = parseInt(filter.page)
+    //   return filter
+    // },
+    // resetFilter() {
+    //   this.filter = {
+    //     page: 1,
+    //     'filter[username]': null
+    //   }
+    // },
+    // fetchRecords(query) {
+    //   this.loadingItems = true
+    //   this.items = []
+    //   return fetchUsers(query)
+    //     .then(({ data, meta }) => {
+    //       this.items = data
+    //       this.serverItemsLength = meta.total
+    //       this.loadingItems = false
+    //     })
+    //     .catch(() => {
+    //       this.loadingItems = false
+    //     })
+    // },
     //action
     handleCreateItem() {
       this.$router.push({

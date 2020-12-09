@@ -10,21 +10,10 @@
     <v-toolbar color="primary darken-1" dark>
       <img :src="computeLogo" height="36" alt="Vue Material Admin Template" />
       <v-toolbar-title class="ml-0 pl-3">
-        <span class="hidden-sm-and-down">Vue Material</span>
+        <span class="hidden-sm-and-down">Aimemo Admin</span>
       </v-toolbar-title>
     </v-toolbar>
     <div class="app-drawer__inner">
-      <div class="pa-3">
-        <v-subheader v-if="drawerWidth !== 64">
-          {{ $vuetify.lang.t('$vuetify.sponsor') }}
-        </v-subheader>
-        <a :href="sponsor.href">
-          <v-img
-            :src="drawerWidth === 64 ? sponsor.srcMini : sponsor.src"
-            alt="Optic fiber component provider"
-          />
-        </a>
-      </div>
       <v-list :dense="drawerWidth !== 64" class="pa-0">
         <template v-for="(item, key) in computeMenu">
           <template v-if="item.children && item.children.length > 0">
@@ -34,9 +23,9 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-icon v-bind="attrs" v-on="on" v-text="item.meta.icon" />
                   </template>
-                  <span>
+                  <!-- <span>
                     {{ $vuetify.lang.t('$vuetify.menu.' + item.meta.title) }}
-                  </span>
+                  </span> -->
                 </v-tooltip>
               </template>
               <template v-slot:activator>
@@ -103,7 +92,7 @@
                 />
               </v-list-item-content>
               <v-list-item-action v-if="item.meta.new">
-                <v-icon color="green">mdi-new-box </v-icon>
+                <v-icon color="green"></v-icon>
               </v-list-item-action>
             </v-list-item>
           </template>
@@ -127,12 +116,12 @@
           </div>
         </template>
         <template v-else>
-          <div class="d-flex">
+          <!-- <div class="d-flex">
             <v-spacer />
             <v-btn icon tile @click="handleDrawerCollapse" class="mr-2">
               <v-icon>mdi-arrow-collapse-left</v-icon>
             </v-btn>
-          </div>
+          </div> -->
         </template>
       </div>
     </template>
@@ -167,7 +156,7 @@ export default {
 
   computed: {
     computeLogo() {
-      return '/static/m.png'
+      return '/static/icon/aimemo-logo.svg'
     },
     computeMenu() {
       return routes[0].children
@@ -190,7 +179,7 @@ export default {
 .app-drawer
   overflow: hidden !important
   &__inner
-    height: calc(100vh - 48px)
+    height: calc(100vh - 64px)
     overflow-y: scroll
   .drawer-menu--scroll
     height: calc(100vh - 48px)

@@ -124,18 +124,19 @@ export default {
   },
   methods: {
     login() {
-      if (this.$refs.form.validate()) {
-        this.loading = true
-        this.$store
-          .dispatch('login', this.formModel)
-          .then(() => {
-            this.loading = false
-            this.$router.push('/dashboard')
-          })
-          .catch(() => {
-            this.loading = false
-          })
-      }
+      // if (this.$refs.form.validate()) {
+      //   this.loading = true
+      //   this.$store
+      //     .dispatch('login', this.formModel)
+      //     .then(() => {
+      //       this.loading = false
+      //       this.$router.push('/dashboard')
+      //     })
+      //     .catch(() => {
+      //       this.loading = false
+      //     })
+      // }
+      this.$router.push('/dashboard')
     },
     handleSocialLogin() {}
   }

@@ -13,21 +13,21 @@ const router = new Router({
   routes: routes
 })
 // router gards
-router.beforeEach((to, from, next) => {
-  NProgress.start()
-  const token = store.getters.getAccessToken
-  if (to.name !== 'login') {
-    if (token) {
-      next()
-    } else {
-      next({ name: 'login', query: { redirect: to.path } })
-    }
-  } else {
-    next()
-  }
+// router.beforeEach((to, from, next) => {
+//   NProgress.start()
+//   const token = store.getters.getAccessToken
+//   if (to.name !== 'login') {
+//     if (token) {
+//       next()
+//     } else {
+//       next({ name: 'login', query: { redirect: to.path } })
+//     }
+//   } else {
+//     next()
+//   }
 
-  //auth route is authenticated
-})
+//   //auth route is authenticated
+// })
 
 router.afterEach(() => {
   NProgress.done()
